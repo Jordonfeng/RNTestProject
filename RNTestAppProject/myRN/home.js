@@ -25,7 +25,8 @@ import {
   TouchableHighlight,
   StatusBar,
   Image,
-  RefreshControl
+  RefreshControl,
+  TouchableOpacity
 } from 'react-native';
 
 const ds = new ListView.DataSource({
@@ -35,23 +36,24 @@ const ds = new ListView.DataSource({
 const circleSize = 8;
 const circleMargin = 5;
 
-export default class home extends Component {
+
+export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentPage: 0,
       dataSource: ds.cloneWithRows([
         {
-          image:require('./image/102ea94fe08fe8f1c840c46e05cc145d.jpg'),
+          image:require('../image/102ea94fe08fe8f1c840c46e05cc145d.jpg'),
           title : '名字1',
           subTitle : '描述1'
         },
         {
-          image:require('./image/102ea94fe08fe8f1c840c46e05cc145d.jpg'),
+          image:require('../image/102ea94fe08fe8f1c840c46e05cc145d.jpg'),
           title : '名字2',
           subTitle : '描述2'
         },{
-          image:require('./image/102ea94fe08fe8f1c840c46e05cc145d.jpg'),
+          image:require('../image/102ea94fe08fe8f1c840c46e05cc145d.jpg'),
           title : '名字3',
           subTitle : '描述3'
         }
@@ -68,13 +70,13 @@ export default class home extends Component {
       //   url:'http://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E5%9B%BE%E7%89%87&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=935292084,2640874667&os=929535083,139004715&simid=3383873348,359765392&pn=1&rn=1&di=111420268630&ln=1997&fr=&fmq=1552310249178_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&objurl=http%3A%2F%2Fwww.pptok.com%2Fwp-content%2Fuploads%2F2012%2F08%2Fxunguang-4.jpg&rpstart=0&rpnum=0&adpicid=0&force=undefined'
       // }
       {
-        image:require('./image/102ea94fe08fe8f1c840c46e05cc145d.jpg')
+        image:require('../image/102ea94fe08fe8f1c840c46e05cc145d.jpg')
       },
       {
-        image:require('./image/90ae18c31de983ee40cd7381bc117440.jpg')
+        image:require('../image/90ae18c31de983ee40cd7381bc117440.jpg')
       },
       {
-        image:require('./image/ca957c01cdc564cda5dac25fea51e0e5.jpg')
+        image:require('../image/ca957c01cdc564cda5dac25fea51e0e5.jpg')
       }
     ],
     searchText :'',
@@ -82,6 +84,7 @@ export default class home extends Component {
     };
   }
   render() {
+    const { navigate } = this.props.navigation;
     const advertisementCount = this.state.advertisements.length;
     const indicatorWidth = circleSize * advertisementCount + circleMargin * advertisementCount * 2 ;
     const left =  (Dimensions.get('window').width - indicatorWidth) / 2 ;
@@ -95,7 +98,8 @@ export default class home extends Component {
               this.setState({searchText:text});
               console.log('搜索内容 '+this.state.searchText);
             }}></TextInput>
-            <Button style={styles.searchButton} title='搜索' onPress = {() => Alert.alert('搜索内容 '+this.state.searchText,null,null)}></Button>
+            {/* <Button style={styles.searchButton} title='搜索' onPress = {() => Alert.alert('搜索内容 '+this.state.searchText,null,null)}></Button> */}
+            <Button style={styles.searchButton} title='搜索' onPress = {() =>{navigate('page2',{message:'Detail'})}}></Button>
           </View>
           <View style={styles.advertisement}>
             <ScrollView ref='scrollView' 
@@ -143,6 +147,7 @@ export default class home extends Component {
   }
   _renderRow = (rowData, sectionID, rowID) => {
     return (
+      // <TouchableOpacity onPress ={() => {navigate('page2',{message:'Detail'})}}>
         <TouchableHighlight onPress = {() =>Alert.alert('点击 ' + rowData.title,null,null)}>
               <View style = {styles.row}>
                 <Image source = {rowData.image} style = {styles.productImage}></Image>
@@ -152,6 +157,7 @@ export default class home extends Component {
                 </View>
               </View>
         </TouchableHighlight>
+        // </TouchableOpacity>
     );
   }
 
@@ -176,7 +182,7 @@ export default class home extends Component {
     this.setState({isRefreshing :true});
     setTimeout(() => {
       const products = Array.from(new Array(10)).map((value,index) =>({
-        image:require('./image/90ae18c31de983ee40cd7381bc117440.jpg'),
+        image:require('../image/90ae18c31de983ee40cd7381bc117440.jpg'),
         title : '新名字' + index,
         subTitle : '新描述' + index
       }));
