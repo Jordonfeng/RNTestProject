@@ -4,14 +4,12 @@
  *
  * @format
  * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
 
 import React, {
   Component
 } from 'react';
 import {
-  AppRegistry,
   Platform,
   Dimensions,
   StyleSheet,
@@ -25,8 +23,7 @@ import {
   TouchableHighlight,
   StatusBar,
   Image,
-  RefreshControl,
-  TouchableOpacity
+  RefreshControl
 } from 'react-native';
 
 const ds = new ListView.DataSource({
@@ -37,7 +34,7 @@ const circleSize = 8;
 const circleMargin = 5;
 
 
-export default class Home extends Component {
+export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -147,7 +144,6 @@ export default class Home extends Component {
   }
   _renderRow = (rowData, sectionID, rowID) => {
     return (
-      // <TouchableOpacity onPress ={() => {navigate('page2',{message:'Detail'})}}>
         <TouchableHighlight onPress = {() =>Alert.alert('点击 ' + rowData.title,null,null)}>
               <View style = {styles.row}>
                 <Image source = {rowData.image} style = {styles.productImage}></Image>
@@ -157,7 +153,6 @@ export default class Home extends Component {
                 </View>
               </View>
         </TouchableHighlight>
-        // </TouchableOpacity>
     );
   }
 
