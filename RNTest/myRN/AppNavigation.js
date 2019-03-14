@@ -5,7 +5,7 @@ import Home from './Home';
 import Detail from './Detail';
 
 const AppNavigator = createStackNavigator({
-    HomeScreen :{screen :Home},
+    HomeScreen :{screen :Home,navigationOptions:({navigation}) => ({header :null})},
     DetailScreen :{screen :Detail}
 },{
     initialRouteName:'HomeScreen'

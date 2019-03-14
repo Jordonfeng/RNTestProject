@@ -9,14 +9,14 @@ import {
 export default class Detail extends React.Component {
     //接收上一个页面传过来的title显示出来
     static navigationOptions = ({navigation}) => ({
-        // headerTitle: navigation.state.params.title,
+        headerTitle: navigation.state.params.title,
         headerTitleStyle:{
             fontSize:18,
             fontWeight:'400',
             alignSelf:'center'
         },
-        headerStyle: {height: 65, backgroundColor: '#FFF'},
-        headerRight: <View><Text style={{paddingRight: 14, color: '#000', fontSize: 18}}>编辑</Text></View>,
+        headerStyle: {height: 44, backgroundColor: 'white'},
+        headerRight: <View><Text style={{paddingRight: 14, color: '#000', fontSize: 14}}>编辑</Text></View>,
         headerBackTitle: '回去',
         headerTruncatedBackTitle: '返回'
     });

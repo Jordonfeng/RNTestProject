@@ -96,7 +96,7 @@ export default class Home extends React.Component {
               console.log('搜索内容 '+this.state.searchText);
             }}></TextInput>
             {/* <Button style={styles.searchButton} title='搜索' onPress = {() => Alert.alert('搜索内容 '+this.state.searchText,null,null)}></Button> */}
-            <Button style={styles.searchButton} title='搜索' onPress = {() => this.props.navigation.navigate('DetailScreen')}></Button>
+            <Button style={styles.searchButton} title='搜索' onPress = {() => this.props.navigation.navigate('DetailScreen',{title : '详情'})}></Button>
           </View>
           <View style={styles.advertisement}>
             <ScrollView ref='scrollView' 
@@ -207,11 +207,11 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray'
+    backgroundColor: 'white'
   },
   searchBar: {
-    marginTop: Platform.OS == 'ios' ? 50 : 0,
-    height: 40,
+    marginTop: Platform.OS == 'ios' ? 44 : 0,
+    height: 44,
     backgroundColor: 'white',
     flexDirection: 'row'
   },
@@ -226,6 +226,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   advertisement: {
+    marginTop :5,
     height: 180,
     backgroundColor: 'yellow'
   },
